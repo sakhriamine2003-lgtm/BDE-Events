@@ -9,4 +9,9 @@ class evenement extends Model
 {
     /** @use HasFactory<\Database\Factories\EvenementFactory> */
     use HasFactory;
+
+        public function Reservation()
+{
+    return $this->hasMany(Reservation::class);
+}
 }
