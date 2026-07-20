@@ -14,6 +14,13 @@ return new class extends Migration
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->title();
+            $table->heure();
+             $table->date('date');
+            $table->lieu();
+            $table->prix();
+            $table->maxPlaces();
+
         });
     }
 

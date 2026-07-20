@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->nom();
+            $table->email();
+            $table->password();
+            $table->role_user();
+
         });
     }
 
@@ -25,3 +30,4 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+

@@ -8,12 +8,10 @@ use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index()
     {
-        //
+
     }
 
     /**
