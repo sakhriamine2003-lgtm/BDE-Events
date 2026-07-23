@@ -30,4 +30,6 @@ Route::post('/CreeEvenement' , [EvenementController::class, 'create'])->name('cr
 Route::get('/AfficherEvenement' , [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;
 
 
-Route::post('/Etdiant' , [ReservationController::class, 'index'])->name('reserverEvent');
+Route::post('/reservation', [ReservationController::class, 'store'])
+    ->middleware('auth')
+    ->name('reserverEvent');

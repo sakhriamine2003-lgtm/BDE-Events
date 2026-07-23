@@ -28,6 +28,7 @@
                         <th class="py-3 px-4 border">Lieu</th>
                         <th class="py-3 px-4 border">Prix</th>
                         <th class="py-3 px-4 border">Places</th>
+                        <th class="py-3 px-4 border">Les places reserver</th>
                         <th class="py-3 px-4 border">Actions</th>
                     </tr>
                 </thead>
@@ -40,7 +41,9 @@
                         <td class="border px-4 py-2">{{$ev->heure}}</td>
                         <td class="border px-4 py-2">{{$ev->Lieu}}</td>
                         <td class="border px-4 py-2">{{$ev->Prix}}</td>
+
                         <td class="border px-4 py-2">{{$ev->maxPlaces}}</td>
+                        <td class="border px-4 py-2">{{1}}</td>
 
                   <td class="border px-4 py-2 space-x-2">
 
@@ -63,24 +66,16 @@
         </form>
 
     @else
- <form action="{{ route('reserverEvent') }}" method="POST">
-    <!-- @csrf -->
-    <button
-       class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
+<form action="{{ route('reserverEvent') }}" method="POST">
+    @csrf
+    <input type="hidden" name="evenement_id" value="{{ $ev->id }}">
+    <button class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
         Réservation
-
     </button>
-    @endif
+</form>
 
-
-
-
-
-
-
-
-
-    @endforeach
+@endif
+@endforeach
 
 
 
