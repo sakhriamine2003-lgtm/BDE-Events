@@ -13,12 +13,19 @@ class ReservationController extends Controller
         'evenement_id' => 'required|exists:evenements,id',
     ]);
 
+
+    if (Reservation::where('user_id', auth()->id())
+        ->where('evenement_id', $r->evenement_id)
+        ->exists())
+        { return view('Etudiant');
+        }
+
     Reservation::create([
         'user_id'      => auth()->id(),
         'evenement_id' => $r->evenement_id,
     ]);
 
-    return view('')
+   return view('Etudiant');
 
 }
 }
