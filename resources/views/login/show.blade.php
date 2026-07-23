@@ -46,9 +46,9 @@
                     placeholder="amine@gmail.com"
                     required>
 
-                {{-- @error('email')
+                @error('email')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror --}}
+                @enderror
 
             </div>
 
@@ -66,9 +66,9 @@
                     placeholder="********"
                     required>
 
-                {{-- @error('password')
+                @error('password')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror --}}
+                @enderror
 
             </div>
 
@@ -83,9 +83,9 @@
             <option value="admin">Admin</option>
 
         </select>
-                {{-- @error('role_user')
+                @error('role_user')
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror --}}
+                @enderror
 
        </div>
 

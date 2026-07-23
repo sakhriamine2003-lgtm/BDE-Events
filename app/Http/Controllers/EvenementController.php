@@ -13,9 +13,10 @@ class EvenementController extends Controller
      */
     public function index()
     {
-        //
+        return view('CreeEvenement');
     }
 
+    
     /**
      * Show the form for creating a new resource.
      */

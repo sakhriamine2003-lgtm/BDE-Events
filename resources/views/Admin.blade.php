@@ -48,6 +48,9 @@
                 {{ Auth::user()->role_user }}
             </p>
         </div>
+        <div>
+            <a href="{{route('Evenement')}}">Cree Event</a>
+        </div>
 
     </div>
 
