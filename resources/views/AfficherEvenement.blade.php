@@ -62,14 +62,14 @@
             </button>
         </form>
 
-        @else
- <form action="{{ route('') }}" method="POST">
-        <!-- @csrf -->
-    <a href=""
+    @else
+ <form action="{{ route('reserverEvent') }}" method="POST">
+    <!-- @csrf -->
+    <button
        class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
         Réservation
-    </a>
-</form>
+
+    </button>
     @endif
 
 

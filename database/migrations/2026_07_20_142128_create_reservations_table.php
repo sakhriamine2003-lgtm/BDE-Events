@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('id_reservation')->unique();
+            $table->foreignId('evenement_id')->constrained('evenements')
+                  ->cascadeOnDelete();
             $table->foreignId('user_id');
             $table->foreignId('evenement_id');
+
+
         });
     }
 
