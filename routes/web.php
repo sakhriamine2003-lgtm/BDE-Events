@@ -22,4 +22,6 @@ Route::get('/Etudiant', function () {return view('Etudiant');});
 
 
 Route::get('/CreeEvenement' , [EvenementController::class, 'index'])->name('Evenement');
+Route::post('/CreeEvenement' , [EvenementController::class, 'create'])->name('createEvenement');
+
 

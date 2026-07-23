@@ -15,8 +15,7 @@
             Ajouter un Événement
         </h2>
 
-        <form action="/evenements" method="POST" class="space-y-5">
-
+   <form action="{{ route('createEvenement') }}" method="POST">
             <!-- @csrf -->
 
             <div>
