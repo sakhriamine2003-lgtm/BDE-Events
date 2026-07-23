@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - BDE-Events</title>
+    <title>Connexion - BDE Events</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="https://kit.fontawesome.com/your-kit.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="min-h-screen from-orange-50 via-white to-orange-100 flex items-center justify-center relative">
+<body class="min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 flex items-center justify-center">
 
-    <!-- Background -->
-    <div class="absolute w-80 h-80 bg-blue-400 rounded-full blur-3xl opacity-30 -top-20 -left-20 animate-pulse"></div>
+    <div class="w-full max-w-md bg-white shadow-2xl rounded-3xl p-8">
 
-    <div class="absolute w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-20 bottom-0 right-0 animate-pulse"></div>
-
-    <!-- Card -->
-    <div class="card w-full max-w-md mx-4 backdrop-blur-xl bg-white/90 rounded-3xl shadow-2xl border border-white/30 p-8">
-
-        <!-- Logo -->
-        <div class="text-center">
-
-            <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center shadow-xl mb-5">
-
-                <i class="fa-solid fa-user text-white text-3xl">?</i>
-
+        <div class="text-center mb-8">
+            <div class="w-20 h-20 mx-auto rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center mb-4">
+                <i class="fa-solid fa-user text-white text-3xl"></i>
             </div>
 
             <h2 class="text-3xl font-bold text-gray-800">
@@ -35,96 +25,89 @@
             <p class="text-gray-500 mt-2">
                 Connectez-vous à votre compte
             </p>
-
         </div>
 
-        <!-- Form -->
-        {{-- <form method="POST" action="{{ route('login.store') }}" class="mt-8"> --}}
+        <form method="POST" action="{{ route('login.store') }}">
 
             @csrf
 
             <!-- Email -->
-
             <div class="mb-5">
 
-                <label class="block text-sm font-medium mb-2">
-                    Adresse email
+                <label class="block mb-2 font-medium">
+                    Adresse Email
                 </label>
 
-                <div class="relative">
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    class="w-full border rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="amine@gmail.com"
+                    required>
 
-                    <i class="fa-solid fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="exemple@email.com"
-                        required
-                        class="input w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-
-                </div>
-
-                @error('email')
-                    <p class="text-red-500 text-sm mt-2">
-                        {{ $message }}
-                    </p>
-                @enderror
+                {{-- @error('email')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror --}}
 
             </div>
 
             <!-- Password -->
-
             <div class="mb-5">
 
-                <label class="block text-sm font-medium mb-2">
+                <label class="block mb-2 font-medium">
                     Mot de passe
                 </label>
 
-                <div class="relative">
+                <input
+                    type="password"
+                    name="password"
+                    class="w-full border rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 outline-none"
+                    placeholder="********"
+                    required>
 
-                    <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Votre mot de passe"
-                        required
-                        class="input w-full pl-12 pr-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
-
-                </div>
+                {{-- @error('password')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror --}}
 
             </div>
 
+       <div class="mb-5">
+            <label class="block mb-2 font-medium">Rôle</label>
+
+        <select
+        name="role_user"
+        class="w-full border rounded-xl px-4 py-3">
+
+            <option value="etudiant">Étudiant</option>
+            <option value="admin">Admin</option>
+
+        </select>
+                {{-- @error('role_user')
+                    <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror --}}
+
+       </div>
+
+
+
             <!-- Remember -->
+            <div class="flex justify-between items-center mb-6">
 
-            <div class="flex items-center justify-between text-sm">
-
-                <label class="flex items-center gap-2 text-gray-600">
-
-                    <input type="checkbox"
-                           name="remember"
-                           class="rounded">
-
+                <label class="flex items-center gap-2 text-sm">
+                    <input type="checkbox" name="remember">
                     Se souvenir de moi
-
                 </label>
 
-                <a href="#"
-                   class="text-blue-600 hover:underline">
-
+                <a href="#" class="text-blue-600 text-sm hover:underline">
                     Mot de passe oublié ?
-
                 </a>
 
             </div>
 
-            <!-- Button -->
-
             <button
                 type="submit"
-                class="w-full mt-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold hover:scale-105 hover:shadow-2xl transition duration-300">
-
-                <i class="fa-solid fa-right-to-bracket mr-2"></i>
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-bold">
 
                 Se connecter
 
@@ -132,29 +115,12 @@
 
         </form>
 
-        <!-- Divider -->
-
-        <div class="flex items-center my-8">
-
-            <div class="flex-1 h-px bg-gray-300"></div>
-
-            <span class="px-3 text-gray-500 text-sm">
-                ou
-            </span>
-
-            <div class="flex-1 h-px bg-gray-300"></div>
-
-        </div>
-
-
-        <!-- Register -->
-
-        <p class="text-center text-sm text-gray-600 mt-8">
+        <p class="text-center mt-6 text-gray-600">
 
             Vous n'avez pas de compte ?
 
-            <a href="{{'AfficherFormulaireRegiter'}}"
-               class="font-semibold text-blue-600 hover:underline">
+            <a href=""
+               class="text-blue-600 font-semibold hover:underline">
 
                 Créer un compte
 
@@ -162,7 +128,8 @@
 
         </p>
 
-    </div>
+
+ </div>
 
 </body>
 </html>
