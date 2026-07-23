@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\evenement;
 use App\Http\Requests\StoreevenementRequest;
 use App\Http\Requests\UpdateevenementRequest;
+use App\Policies\EvenementPolicy;
 use Illuminate\Http\Request;
 
 class EvenementController extends Controller
@@ -32,10 +33,18 @@ class EvenementController extends Controller
 
 
         ]);
-        dd($r);
+
 
         return redirect('/Admin');
     }
+
+
+
+public function AfficherEvenement()
+{
+    $Evenement = Evenement::get();
+    return view('AfficherEvenement', compact('Evenement'));
+}
 
 
     }

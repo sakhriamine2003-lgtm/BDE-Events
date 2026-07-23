@@ -25,3 +25,5 @@ Route::get('/CreeEvenement' , [EvenementController::class, 'index'])->name('Even
 Route::post('/CreeEvenement' , [EvenementController::class, 'create'])->name('createEvenement');
 
 
+
+Route::get('/AfficherEvenement' , [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;

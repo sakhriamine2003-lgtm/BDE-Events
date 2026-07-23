@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-100">
 
-<nav class="bg-green-600 text-white p-4 flex justify-between">
+<nav class="bg-black/50 text-white p-4 flex justify-between">
 
     <h1 class="text-2xl font-bold">
         Dashboard Étudiant
