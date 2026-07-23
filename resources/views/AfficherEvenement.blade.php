@@ -63,12 +63,13 @@
         </form>
 
         @else
-
+ <form action="{{ route('') }}" method="POST">
+        <!-- @csrf -->
     <a href=""
        class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
         Réservation
-    </a
-
+    </a>
+</form>
     @endif
 
 
