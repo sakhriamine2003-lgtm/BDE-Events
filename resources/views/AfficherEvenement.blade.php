@@ -41,17 +41,50 @@
                         <td class="border px-4 py-2">{{$ev->Lieu}}</td>
                         <td class="border px-4 py-2">{{$ev->Prix}}</td>
                         <td class="border px-4 py-2">{{$ev->maxPlaces}}</td>
-                        <td class="border px-4 py-2 space-x-2">
 
-                            <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
-                                Modifier
-                            </button>
+                  <td class="border px-4 py-2 space-x-2">
 
-                            <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
-                                Supprimer
-                            </button>
-                        </td>
-                        @endforeach
+    @if(Auth::user()->role_user == 'Admin')
+
+        <a href=""
+           class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+            Modifier
+        </a>
+
+        <form action=""
+              method="POST"
+              class="inline">
+
+
+            <button type="submit"
+                    class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                Supprimer
+            </button>
+        </form>
+
+        @else
+
+    <a href=""
+       class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
+        Réservation
+    </a
+
+    @endif
+
+
+
+
+
+
+
+
+
+    @endforeach
+
+
+
+
+</td>
                     </tr>
                 </td>
                     </tr>

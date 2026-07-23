@@ -47,6 +47,8 @@
 
     </div>
 
+    <a href="{{'AfficherEvenement'}}">voir le dernier Evenement </a>
+
 </div>
 
 </body>
