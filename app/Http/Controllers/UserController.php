@@ -37,14 +37,18 @@ class UserController extends Controller
 // dd($r);
         // 3-> comparaison entre $r et db :
 
-        if (Auth::attempt($r->only('email', 'password','role_user'))) {
-            return redirect('/feed');
-        }
+     if (Auth::attempt($r->only('email', 'password', 'role_user'))) {
+        $r->session()->regenerate();
 
-
+    if (Auth::user()->role_user == 'Admin') {
+        return redirect('/Admin');
     }
 
-
+    if (Auth::user()->role_user == 'Etudiant') {
+        return redirect('/Etudiant');
+    }
+}
+    }
 
 
 

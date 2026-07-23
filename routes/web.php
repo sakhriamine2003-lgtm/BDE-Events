@@ -8,18 +8,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/feed', function () {
-    return view('feed');
-});
-
 
 Route::get('login' ,[UserController::class , 'AfficherFormulaireLogin']);
 
 
+Route::post('/login', [UserController::class, 'index'])->name('login.store');
 
-Route::post('/login', [UserController::class, 'index'])
-->name('login.store');
 
-// Route::get('feed' ,[])
+Route::get('/Admin', function () {return view('Admin');});
+Route::get('/Etudiant', function () {return view('Etudiant');});
 
 
