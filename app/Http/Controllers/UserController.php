@@ -5,16 +5,72 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+
+  public function  AfficherFormulaireLogin(){
+        return  view('Login.show');
+
     }
+
+
+
+
+
+    public function index(Request   $r)
+    {
+        // nkhzne data  dial formulaire  wnsftha db  ;
+
+
+        // 1->valudation  data li jaya mn formulaire  :
+            $r->validate(
+        [
+        'email'   => 'required|string|max:500',
+        'password' => 'required|min:4',
+        'role_user' => 'required',
+
+        ]);
+// dd($r);
+        // 3-> comparaison entre $r et db :
+
+     if (Auth::attempt($r->only('email', 'password', 'role_user'))) {
+        $r->session()->regenerate();
+
+    if (Auth::user()->role_user == 'Admin') {
+        return redirect('/Admin');
+    }
+
+    if (Auth::user()->role_user == 'Etudiant') {
+        return redirect('/Etudiant');
+    }
+}
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.
