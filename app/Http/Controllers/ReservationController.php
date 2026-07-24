@@ -14,11 +14,12 @@ class ReservationController extends Controller
     ]);
 
 
-    if (Reservation::where('user_id', auth()->id())
-        ->where('evenement_id', $r->evenement_id)
-        ->exists())
-        { return view('Etudiant');
-        }
+  if (Reservation::where('user_id', auth()->id())
+    ->exists()) {
+    return redirect()->back()->with('error', 'Vous avez déjà réservé.');
+
+}
+
 
     Reservation::create([
         'user_id'      => auth()->id(),

@@ -74,6 +74,13 @@
     </button>
 </form>
 
+@if(session('error'))
+<script>
+    alert("{{ session('error') }}");
+</script>
+@endif
+
+
 @endif
 @endforeach
 
