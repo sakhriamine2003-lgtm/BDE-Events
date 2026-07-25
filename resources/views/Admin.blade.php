@@ -15,12 +15,13 @@
     </div>
 </nav>
 
+
+
 <div class="p-8">
 
     <h2 class="text-3xl font-bold mb-8">
         Bonjour Admin : {{Auth::user()->name }}
     </h2>
-
     <div class="grid grid-cols-4 gap-6">
 
         <div class="bg-white shadow rounded-xl p-6">

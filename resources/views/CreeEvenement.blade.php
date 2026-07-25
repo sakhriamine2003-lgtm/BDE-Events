@@ -13,9 +13,15 @@
 
         <h2 class="text-3xl font-bold text-center text-indigo-600 mb-8">
             Ajouter un Événement
-        </h2>
-        
-        <a href="{{'Admin'}}">router</a>
+            </h2>
+        {{-- </h2>
+@if ('role_user' = 'Etudiant')
+    <a href="{{'Etudiant'}}">router</a>
+@elseif ('role_user' = 'Admin')
+    <a href="{{'Admin'}}">router</a>
+    @else ;
+@endif --}}
+        {{-- <a href="{{}}">router</a> --}}
 
 
    <form action="{{ route('createEvenement') }}" method="POST">

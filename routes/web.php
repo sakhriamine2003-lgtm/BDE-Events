@@ -17,8 +17,8 @@ Route::get('login' ,[UserController::class , 'AfficherFormulaireLogin']);
 Route::post('/login', [UserController::class, 'index'])->name('login.store');
 
 
-Route::get('/Admin', function () {return view('Admin');});
-Route::get('/Etudiant', function () {return view('Etudiant');});
+// Route::get('/Admin', function () {return view('Admin');});
+// Route::get('/Etudiant', function () {return view('Etudiant');});
 
 
 
@@ -33,3 +33,11 @@ Route::get('/AfficherEvenement' , [EvenementController::class, 'AfficherEvenemen
 Route::post('/reservation', [ReservationController::class, 'store'])
     ->middleware('auth')
     ->name('reserverEvent');
+
+
+
+    Route::get('/Admin', function () {return view('Admin');});
+
+
+    Route::get('/Etudiant', function () {return view('Etudiant');});
+

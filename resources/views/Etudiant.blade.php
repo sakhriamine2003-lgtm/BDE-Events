@@ -24,7 +24,7 @@
     <div class="bg-white rounded-xl shadow p-8">
 
         <h2 class="text-3xl font-bold mb-4">
-            Bienvenue {{ Auth::user()->name }}
+            Bienvenue {{Auth::user()->name }}
         </h2>
 
         <p class="text-gray-600 mb-6">
@@ -40,7 +40,7 @@
 
             <p>
                 <strong>Rôle :</strong>
-                {{ Auth::user()->role_user }}
+                {{ Auth::user()->role_user}}
             </p>
 
         </div>

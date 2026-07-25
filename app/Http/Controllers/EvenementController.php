@@ -29,6 +29,7 @@ class EvenementController extends Controller
             'heure' => $r->heure,
             'date' => $r->date,
             'lieu' => $r->lieu,
+            'prix' => $r->prix,
             'maxPlaces' => $r->maxPlaces,
 
 
@@ -45,6 +46,8 @@ public function AfficherEvenement()
     $Evenement = Evenement::get();
     return view('AfficherEvenement', compact('Evenement'));
 }
+
+
 
 
     }
