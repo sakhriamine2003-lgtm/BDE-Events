@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class RoleMiddleware
+{
+    public function handle(Request $request, Closure $next, $role_user): Response
+    {
+        if (!auth()->check()) {
+            return redirect('/login');
+        }
+
+        if (auth()->user()->role_user != $role_user) {
+            abort(403, 'Accès interdit');
+        }
+
+        return $next($request);
+    }
+}

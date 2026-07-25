@@ -13,7 +13,9 @@
 
         <h2 class="text-3xl font-bold text-center text-indigo-600 mb-8">
             Ajouter un Événement
-        </h2>
+            </h2>
+
+
 
    <form action="{{ route('createEvenement') }}" method="POST">
             <!-- @csrf -->

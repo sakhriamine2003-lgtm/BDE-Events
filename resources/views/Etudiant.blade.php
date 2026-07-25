@@ -7,7 +7,7 @@
 </head>
 <body class="bg-gray-100">
 
-<nav class="bg-green-600 text-white p-4 flex justify-between">
+<nav class="bg-black/50 text-white p-4 flex justify-between">
 
     <h1 class="text-2xl font-bold">
         Dashboard Étudiant
@@ -24,7 +24,7 @@
     <div class="bg-white rounded-xl shadow p-8">
 
         <h2 class="text-3xl font-bold mb-4">
-            Bienvenue {{ Auth::user()->name }}
+            Bienvenue {{Auth::user()->name }}
         </h2>
 
         <p class="text-gray-600 mb-6">
@@ -40,12 +40,14 @@
 
             <p>
                 <strong>Rôle :</strong>
-                {{ Auth::user()->role_user }}
+                {{ Auth::user()->role_user}}
             </p>
 
         </div>
 
     </div>
+
+    <a href="{{'AfficherEvenement'}}">voir le dernier Evenement </a>
 
 </div>
 

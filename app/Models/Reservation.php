@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
  protected $fillable = [
-    'id_reservation',
+    'id',
     'user_id',
     'evenement_id',
 
 ];
-
+protected $primaryKey = 'id_reservation';
 
 
     /** @use HasFactory<\Database\Factories\ReservationFactory> */

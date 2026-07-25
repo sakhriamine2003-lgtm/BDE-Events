@@ -72,7 +72,7 @@
 
             </div>
 
-       <div class="mb-5">
+       {{-- <div class="mb-5">
             <label class="block mb-2 font-medium">Rôle</label>
 
         <select
@@ -87,7 +87,7 @@
                     <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                 @enderror
 
-       </div>
+       </div> --}}
 
 
 

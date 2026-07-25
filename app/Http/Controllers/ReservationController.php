@@ -3,64 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
-use App\Http\Requests\StoreReservationRequest;
-use App\Http\Requests\UpdateReservationRequest;
+use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+   public function store(Request $r)
+{
+    $r->validate([
+        'evenement_id' => 'required|exists:evenements,id',
+    ]);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreReservationRequest $request)
-    {
-        //
-    }
+  if (Reservation::where('user_id', auth()->id())
+    ->exists()) {
+    return redirect()->back()->with('error', 'Vous avez déjà réservé.');
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateReservationRequest $request, Reservation $reservation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Reservation $reservation)
-    {
-        //
-    }
 }
+
+
+    Reservation::create([
+        'user_id'      => auth()->id(),
+        'evenement_id' => $r->evenement_id,
+    ]);
+
+   return view('Etudiant');
+
+}
+}
+
