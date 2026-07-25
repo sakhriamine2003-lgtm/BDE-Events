@@ -35,8 +35,6 @@ public function ReserverEvent(Request $r)
 
 
 
-
-
 public function AffTicket()
 {
     $reservations = Reservation::with('evenement')

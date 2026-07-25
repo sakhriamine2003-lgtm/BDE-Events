@@ -16,9 +16,15 @@
             <span class="p-1.5 bg-indigo-600 rounded-lg text-sm">⚡</span> Dashboard Admin
         </h1>
 
-        <div class="bg-slate-800 px-4 py-1.5 rounded-full text-sm font-medium border border-slate-700 text-slate-200">
-            Bienvenue <span class="text-indigo-400 font-semibold">{{ Auth::user()->name }}</span>
-        </div>
+        <form method="Get" action="{{ route('login.store') }}">
+            @csrf
+
+            <button type="submit"
+                class="bg-indigo-700/60 backdrop-blur px-4 py-1.5 rounded-full text-sm font-medium border border-indigo-400/30 text-white hover:bg-indigo-700 transition">
+                👤 {{ Auth::user()->name }}
+            </button>
+        </form>
+
     </nav>
 
     <!-- Main Container -->
@@ -28,9 +34,9 @@
         <div
             class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-slate-200/80 flex flex-col md:flex-row justify-between md:items-center gap-4">
             <div>
-                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">
+                <a href="" class="text-2xl md:text-3xl font-extrabold text-slate-900">
                     Bonjour Admin : <span class="text-indigo-600">{{ Auth::user()->name }}</span> 👋
-                </h2>
+                </a>
                 <p class="text-slate-500 text-sm mt-1">
                     Voici un aperçu global des statistiques de votre plateforme.
                 </p>

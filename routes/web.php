@@ -12,11 +12,6 @@ Route::get('/', function () {
 });
 
 
-Route::delete('/AfficherEvenement/{id}', [EvenementController::class, 'SupprimerEvent'])
-    ->name('SupprimerEvent');
-
-
-
 Route::get('login', [UserController::class, 'AfficherFormulaireLogin']);
 
 
@@ -56,3 +51,8 @@ Route::middleware(['auth', 'role_user:Etudiant'])->group(function () {
 Route::get('/AffTicket', [ReservationController::class, 'AffTicket'])
     ->middleware('auth')
     ->name('AffTicket');
+
+
+
+Route::delete('/AfficherEvenement/{id}', [EvenementController::class, 'SupprimerEvent'])
+    ->name('SupprimerEvent');

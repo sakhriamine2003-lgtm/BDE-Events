@@ -16,11 +16,14 @@
         <h1 class="text-xl font-bold tracking-wide flex items-center gap-2">
             <span>🎓</span> Dashboard Étudiant
         </h1>
+        <form method="Get" action="{{ route('login.store') }}">
+            @csrf
 
-        <div
-            class="bg-indigo-700/60 backdrop-blur px-4 py-1.5 rounded-full text-sm font-medium border border-indigo-400/30">
-            👤 {{ Auth::user()->name }}
-        </div>
+            <button type="submit"
+                class="bg-indigo-700/60 backdrop-blur px-4 py-1.5 rounded-full text-sm font-medium border border-indigo-400/30 text-white hover:bg-indigo-700 transition">
+                👤 {{ Auth::user()->name }}
+            </button>
+        </form>
 
     </nav>
 
