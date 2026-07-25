@@ -36,8 +36,14 @@ Route::post('/reservation', [ReservationController::class, 'store'])
 
 
 
-    Route::get('/Admin', function () {return view('Admin');});
+Route::middleware(['auth', 'role_user:Admin'])->group(function () {
+    Route::get('/Admin', function () {
+        return view('Admin');
+    });
+});
 
-
-    Route::get('/Etudiant', function () {return view('Etudiant');});
-
+Route::middleware(['auth', 'role_user:Etudiant'])->group(function () {
+    Route::get('/Etudiant', function () {
+        return view('Etudiant');
+    });
+});
