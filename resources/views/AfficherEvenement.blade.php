@@ -13,7 +13,12 @@
         <h2 class="text-3xl font-bold text-center text-indigo-600 mb-6">
             Liste des Événements
         </h2>
-        <a href="{{'Admin'}}">router</a>
+        
+    <a href="
+       @if (auth()->user()->role_user == 'Admin')   {{('/Admin') }}
+       @elseif (auth()->user()->role_user == 'Etudiant') {{('/Etudiant') }}
+       @endif "> Router
+    </a>
 
 
         <div class="overflow-x-auto">
