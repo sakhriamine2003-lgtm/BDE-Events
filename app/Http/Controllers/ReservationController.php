@@ -21,12 +21,12 @@ class ReservationController extends Controller
 }
 
 
-    Reservation::create([
+    $reservation = Reservation::create([
         'user_id'      => auth()->id(),
         'evenement_id' => $r->evenement_id,
     ]);
 
-   return view('Etudiant');
+   return view('Etudiant' ,compact('reservation'));
 
 }
 }

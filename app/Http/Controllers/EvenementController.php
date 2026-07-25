@@ -50,4 +50,15 @@ public function AfficherEvenement()
 
 
 
-    }
+public function SupprimerEvent($id)
+{
+    $evenement = Evenement::findOrFail($id);
+    $evenement->delete();
+
+    return redirect()->back()->with('success', 'Événement supprimé avec succès.');
+}
+
+}
+
+
+

@@ -18,7 +18,7 @@
 
 
    <form action="{{ route('createEvenement') }}" method="POST">
-            <!-- @csrf -->
+            @csrf
 
             <div>
                 <label class="block text-gray-700 font-semibold mb-2">

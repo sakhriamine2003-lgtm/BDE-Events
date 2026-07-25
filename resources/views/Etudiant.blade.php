@@ -48,6 +48,7 @@
     </div>
 
     <a href="{{'AfficherEvenement'}}">voir le dernier Evenement </a>
+    <a class="mx-8" href="">Voir la Reservation</a>
 
 </div>
 

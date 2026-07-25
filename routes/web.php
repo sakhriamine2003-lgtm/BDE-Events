@@ -17,9 +17,6 @@ Route::get('login' ,[UserController::class , 'AfficherFormulaireLogin']);
 Route::post('/login', [UserController::class, 'index'])->name('login.store');
 
 
-// Route::get('/Admin', function () {return view('Admin');});
-// Route::get('/Etudiant', function () {return view('Etudiant');});
-
 
 
 Route::get('/CreeEvenement' , [EvenementController::class, 'index'])->name('Evenement');
@@ -47,3 +44,9 @@ Route::middleware(['auth', 'role_user:Etudiant'])->group(function () {
         return view('Etudiant');
     });
 });
+
+
+Route::delete('/AfficherEvenement/{id}', [EvenementController::class, 'SupprimerEvent'])
+    ->name('SupprimerEvent');
+
+
