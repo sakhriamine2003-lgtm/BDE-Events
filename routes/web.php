@@ -54,6 +54,8 @@ Route::delete('/AfficherEvenement/{id}', [EvenementController::class, 'Supprimer
 
 
 
+Route::middleware(['auth'])->group(function () {
+    // Route pour afficher les tickets/pass de l'étudiant connecté
+    Route::get('/mes-billets', [ReservationController::class, 'myTickets'])->name('tickets.index');
 
-//     Route::get('/afficher-evenement', [EvenementController::class, 'index'])->name('AfficherEvenement');
-// Route::get('/afficher-reservation', [ReservationController::class, 'index'])->name('AfficherReservation');
+});
