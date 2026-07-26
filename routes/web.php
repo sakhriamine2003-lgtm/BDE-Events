@@ -28,7 +28,8 @@ Route::post('/CreeEvenement', [EvenementController::class, 'create'])->name('cre
 Route::get('/AfficherEvenement', [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;
 
 
-Route::post('/reservation', [ReservationController::class, 'store'])
+
+    Route::post('/reservation', [ReservationController::class, 'store'])
     ->middleware('auth')
     ->name('reserverEvent');
 

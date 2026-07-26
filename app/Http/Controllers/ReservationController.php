@@ -10,29 +10,23 @@ class ReservationController extends Controller
 {
     public function store(Request $r)
     {
-        // 1. Validation de la requête
         $r->validate([
             'evenement_id' => 'required|exists:evenements,id',
         ]);
 
-        /** @var \App\Models\User $user */
-        $user = auth()->user();
-
-        // 2. Vérification : l'utilisateur a-t-il DÉJÀ réservé CET événement ?
-        $dejaReserve = $user->reservations()
+        $alreadyReserved = Reservation::where('user_id', auth()->id())
             ->where('evenement_id', $r->evenement_id)
             ->exists();
 
-        if ($dejaReserve) {
-            return redirect()->back()->with('error', 'Vous avez déjà réservé cet événement.');
+        if ($alreadyReserved) {
+            return redirect()->back()->with('warning', 'Vous avez déjà réservé cet événement !');
         }
 
-        // 3. Création de la réservation via la relation Eloquent
-        $user->reservations()->create([
+        Reservation::create([
+            'user_id'      => auth()->id(),
             'evenement_id' => $r->evenement_id,
         ]);
 
-        // 4. Redirection propre avec un message de succès (PRG pattern)
         return redirect()->back()->with('success', 'Votre réservation a bien été enregistrée !');
     }
 
