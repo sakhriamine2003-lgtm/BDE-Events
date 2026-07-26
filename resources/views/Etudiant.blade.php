@@ -1,56 +1,79 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Étudiant</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100">
 
-<nav class="bg-black/50 text-white p-4 flex justify-between">
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased">
 
-    <h1 class="text-2xl font-bold">
-        Dashboard Étudiant
-    </h1>
+    <!-- Navbar moderne -->
+    <nav class="bg-indigo-600 text-white px-6 py-4 flex justify-between items-center shadow-md">
 
-    <div>
-        {{ Auth::user()->name }}
-    </div>
+        <h1 class="text-xl font-bold tracking-wide flex items-center gap-2">
+            <span>🎓</span> Dashboard Étudiant
+        </h1>
 
-</nav>
+        <div
+            class="bg-indigo-700/60 backdrop-blur px-4 py-1.5 rounded-full text-sm font-medium border border-indigo-400/30">
+            👤 {{ Auth::user()->name }}
+        </div>
 
-<div class="p-8">
+    </nav>
 
-    <div class="bg-white rounded-xl shadow p-8">
+    <!-- Main Content -->
+    <div class="max-w-4xl mx-auto p-6 md:p-8 space-y-6">
 
-        <h2 class="text-3xl font-bold mb-4">
-            Bienvenue {{Auth::user()->name }}
-        </h2>
+        <!-- Card Profile Info -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 md:p-8">
 
-        <p class="text-gray-600 mb-6">
-            Vous êtes connecté avec succès.
-        </p>
+            <div class="border-b border-slate-100 pb-4 mb-6">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900">
+                    Bienvenue, <span class="text-indigo-600">{{ Auth::user()->name }}</span> ! 👋
+                </h2>
 
-        <div class="space-y-2">
+                <p class="text-slate-500 mt-1">
+                    Vous êtes connecté avec succès à votre espace.
+                </p>
+            </div>
 
-            <p>
-                <strong>Email :</strong>
-                {{ Auth::user()->email }}
-            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <p>
-                <strong>Rôle :</strong>
-                {{ Auth::user()->role_user}}
-            </p>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Email</span>
+                    <p class="font-medium text-slate-700">{{ Auth::user()->email }}</p>
+                </div>
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                    <span class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Rôle</span>
+                    <p class="font-medium text-indigo-600 uppercase tracking-wide text-sm">{{ Auth::user()->role_user }}
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons / Navigation Links -->
+        <div class="flex flex-col sm:flex-row gap-4">
+
+            <a href="{{ 'AfficherEvenement' }}"
+                class="flex-1 text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
+                🎉 Voir le dernier Événement
+            </a>
+
+            <a href="{{ 'AfficherReservation' }}"
+                class="flex-1 text-center bg-white hover:bg-slate-50 text-slate-700 font-semibold py-3.5 px-6 rounded-xl border border-slate-200 shadow-sm hover:shadow transition-all duration-200">
+                📅 Voir la Réservation
+            </a>
 
         </div>
 
     </div>
 
-    <a href="{{'AfficherEvenement'}}">voir le dernier Evenement </a>
-    <a class="mx-8" href="">Voir la Reservation</a>
-
-</div>
-
 </body>
+
 </html>

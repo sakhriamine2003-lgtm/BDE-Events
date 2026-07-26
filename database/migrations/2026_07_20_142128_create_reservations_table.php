@@ -16,8 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('evenement_id');
             $table->foreignId('user_id');
-
-
         });
     }
 

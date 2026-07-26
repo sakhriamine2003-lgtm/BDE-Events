@@ -41,24 +41,20 @@ class EvenementController extends Controller
 
 
 
-public function AfficherEvenement()
-{
-    $Evenement = Evenement::get();
-    return view('AfficherEvenement', compact('Evenement'));
+    public function AfficherEvenement()
+    {
+        $Evenement = Evenement::get();
+        return view('AfficherEvenement', compact('Evenement'));
+    }
+
+
+
+
+    public function SupprimerEvent($id)
+    {
+        $evenement = Evenement::findOrFail($id);
+        $evenement->delete();
+
+        return redirect()->back()->with('success', 'Événement supprimé avec succès.');
+    }
 }
-
-
-
-
-public function SupprimerEvent($id)
-{
-    $evenement = Evenement::findOrFail($id);
-    $evenement->delete();
-
-    return redirect()->back()->with('success', 'Événement supprimé avec succès.');
-}
-
-}
-
-
-

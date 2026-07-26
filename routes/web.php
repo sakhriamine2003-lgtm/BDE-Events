@@ -11,20 +11,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login' ,[UserController::class , 'AfficherFormulaireLogin']);
+Route::get('login', [UserController::class, 'AfficherFormulaireLogin']);
 
 
 Route::post('/login', [UserController::class, 'index'])->name('login.store');
 
 
+Route::get('/AfficherReservation', [ReservationController::class, 'index']);
 
 
-Route::get('/CreeEvenement' , [EvenementController::class, 'index'])->name('Evenement');
-Route::post('/CreeEvenement' , [EvenementController::class, 'create'])->name('createEvenement');
+Route::get('/CreeEvenement', [EvenementController::class, 'index'])->name('Evenement');
+Route::post('/CreeEvenement', [EvenementController::class, 'create'])->name('createEvenement');
 
 
 
-Route::get('/AfficherEvenement' , [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;
+Route::get('/AfficherEvenement', [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;
 
 
 Route::post('/reservation', [ReservationController::class, 'store'])
@@ -50,3 +51,9 @@ Route::delete('/AfficherEvenement/{id}', [EvenementController::class, 'Supprimer
     ->name('SupprimerEvent');
 
 
+
+
+
+
+//     Route::get('/afficher-evenement', [EvenementController::class, 'index'])->name('AfficherEvenement');
+// Route::get('/afficher-reservation', [ReservationController::class, 'index'])->name('AfficherReservation');
