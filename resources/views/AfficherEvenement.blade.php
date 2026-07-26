@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <title>Liste des Événements</title>
@@ -16,9 +15,9 @@
         </h2>
 
         <a href="@if (auth()->user()->role_user == 'Admin') {{ url('/Admin') }}
-            @elseif (auth()->user()->role_user == 'Etudiant') {{ url('/Etudiant') }} @endif"
-            class="inline-block mb-4 text-indigo-600 hover:underline font-semibold">
-            Retour
+            @elseif (auth()->user()->role_user == 'Etudiant') {{ url('/Etudiant') }}
+            @endif" class="inline-block mb-4 text-indigo-600 hover:underline font-semibold">
+           Retour
         </a>
 
         <div class="overflow-x-auto">
@@ -49,9 +48,8 @@
                             <td class="border px-4 py-2">1</td>
 
                             <td class="border px-4 py-2 space-x-2">
-                                @if (Auth::user()->role_user == 'Admin')
-                                    <a href="#"
-                                        class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 inline-block">
+                                @if(Auth::user()->role_user == 'Admin')
+                                    <a href="#" class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 inline-block">
                                         Modifier
                                     </a>
 
@@ -59,21 +57,20 @@
                                     <form action="{{ route('SupprimerEvent', $ev->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit"
-                                            onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')"
-                                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                                        <button type="submit" onclick="return confirm('Voulez-vous vraiment supprimer cet événement ?')" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
                                             Supprimer
                                         </button>
                                     </form>
-                                @else
-                                    <!-- Action pour Étudiant (Exemple: Réservation) -->
-                                    <form action="{{ 'reserverEvent' }}" method="POST" class="inline">
-                                        @csrf
-                                        <button type="submit"
-                                            class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
-                                            Réservation
+                                  <form action="{{ route('reserverEvent') }}" method="POST">
+                                       @csrf
+                                        <input type="hidden" name="evenement_id" value="{{$evenement->id}}">
+                                        <button type="submit" class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600">
+                                            Réserver
                                         </button>
                                     </form>
+
+
+
                                 @endif
                             </td>
                         </tr>
@@ -84,12 +81,11 @@
 
     </div>
 
-    @if (session('error'))
+    @if(session('error'))
         <script>
             alert("{{ session('error') }}");
         </script>
     @endif
 
 </body>
-
 </html>

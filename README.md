@@ -1,58 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Voici un fichier **README.md** structuré et complet, rédigé en Markdown et intégrant l'ensemble du contexte, des règles métier, des diagrammes UML et du modèle relationnel fournis.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+---
 
-## About Laravel
+# 🎟️ Plateforme de Gestion d'Événements & Pass Étudiant (BDE)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Context du projet
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Ce projet consiste en une plateforme web permettant au Bureau Des Étudiants (BDE) d'organiser et gérer des événements universitaires, et aux étudiants de réserver des places et consulter leur ticket d'accès (Pass Étudiant) sous forme numérique.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Épics & User Stories
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🎯 Épic 1 : Gestion des Événements (Dashboard Admin - BDE)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* **US 1.1 : Création d'un événement**
+* **En tant que** membre de l'équipe BDE (Administrateur),
+* **Je veux** créer un nouvel événement en remplissant un formulaire (*titre, description, date, heure, lieu, prix et jauge maximale de places*),
+* **Afin de** le rendre visible et ouvert aux inscriptions sur la plateforme.
+* **Critères d'acceptation :**
+* Seuls les utilisateurs ayant le rôle `admin` (BDE) ont accès à l'espace `/admin/events/create`.
+* La capacité maximale (`maxPlaces`) doit être un entier positif supérieur à 0.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
 
-## Agentic Development
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
 
-```bash
-composer require laravel/boost --dev
+* **US 1.2 : Suivi des capacités et des réservations**
+* **En tant que** membre du BDE,
+* **Je veux** visualiser sur mon tableau de bord le nombre de places restantes en temps réel pour chaque événement,
+* **Afin d'** adapter la communication ou de prévoir la logistique nécessaire.
 
-php artisan boost:install
+
+
+---
+
+### 🎟️ Épic 2 : Réservation & Espace Étudiant
+
+* **US 2.1 : Inscription en un clic à un événement gratuit**
+* **En tant qu'** étudiant connecté,
+* **Je veux** cliquer sur le bouton **"S'inscrire"** depuis la fiche d'un événement gratuit,
+* **Afin de** réserver immédiatement ma place sans passer par un tunnel de paiement.
+* **Critères d'acceptation :**
+* Le système vérifie que l'événement n'est pas complet (*nombre d'inscrits < jauge max*) avant de valider.
+* Un étudiant ne peut pas s'inscrire deux fois au même événement.
+
+
+
+
+
+---
+
+### 📑 Épic 3 : Le Générateur de Tickets (Le Pass Étudiant)
+
+* **US 3.1 : Génération et consultation du ticket de réservation**
+* **En tant qu'** étudiant inscrit à un événement,
+* **Je veux** accéder à mon profil dans l'espace **"Mes Billets"**,
+* **Afin de** visualiser mon pass numérique contenant un numéro de réservation unique.
+* **Critères d'acceptation :**
+* Le numéro de réservation est généré de manière unique et non prévisible (*ex: `BDE-2026-XXXXX*`).
+* Le pass affiche clairement : le titre de l'événement, la date, l'heure, le lieu et le nom de l'étudiant.
+
+
+
+
+
+---
+
+## 📊 Conception & Architecture
+
+### 1. Diagramme de Cas d'Utilisation (Use Case Diagram)
+
+```
+                  +----------------------------------------------------+
+                  |                Plateforme BDE                      |
+                  |                                                    |
+   ( Admin ) ---->|-- (Créer un nouvel événement) --<<include>>------+   |
+     |            |-- (Consultation du tableau de bord)-<<include>>--|   |
+     |            |-- (Visualiser les places restantes)-<<include>>--|   |
+     |            |-- (Consulter les réservations) -----<<include>>--|   |
+                  |                                                  v   |
+                  |                                          (Se connecter)
+                  |                                                  ^   |
+   ( Étudiant ) ->|-- (Consulter les événements) -------<<include>>--|   |
+                  |-- (Voir la fiche d'un événement) ---<<include>>--|   |
+                  |-- (S'inscrire à un événement gratuit)<<include>>--|   |
+                  |-- (Vérifier les places disponibles) -<<include>>--|   |
+                  |-- (Vérifier si déjà inscrit) -------<<include>>--+   |
+                  +----------------------------------------------------+
+
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+### 2. Diagramme de Classes (UML Class Diagram)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Classe | Attributs | Méthodes / Opérations |
+| --- | --- | --- |
+| **`User`** | `+ id: int`<br>
 
-## Code of Conduct
+<br>`+ nom: String`<br>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<br>`+ email: String (unique)`<br>
 
-## Security Vulnerabilities
+<br>`+ password: String`<br>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<br>`+ role_user: String` | `+ CreeEvenement()`<br>
 
-## License
+<br>`+ ReserverEvent()`<br>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<br>`+ SupprimerEvent()`<br>
+
+<br>`+ AfficherTicketReservations()` |
+| **`événement`** | `+ id: int`<br>
+
+<br>`+ title: String`<br>
+
+<br>`+ description: String`<br>
+
+<br>`+ date: Date`<br>
+
+<br>`+ heure: Time`<br>
+
+<br>`+ lieu: String`<br>
+
+<br>`+ prix: Decimal`<br>
+
+<br>`+ maxPlaces: int` |  |
+| **`réservation`** | `+ id_reservation: String (unique)` |  |
+
+* **Relations :**
+* `User` **1** ------- **1..*** `réservation` *(Un utilisateur peut effectuer une ou plusieurs réservations)*.
+* `événement` **1** ◆------- **1..*** `réservation` *(Composition : Une réservation dépend directement d'un événement)*.
+
+
+
+---
+
+### 3. Modèle Physique / Relational Database Schema (MLD / MPD)
+
+```sql
+User (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role_user VARCHAR(50) NOT NULL
+);
+
+evenement (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    date DATE NOT NULL,
+    heure TIME NOT NULL,
+    lieu VARCHAR(255) NOT NULL,
+    prix DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+    maxPlaces INT NOT NULL
+);
+
+reservation (
+    id_reservation VARCHAR(100) PRIMARY KEY, -- ex: BDE-2026-XXXXX (Unique)
+    user_id INT NOT NULL,
+    evenement_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE,
+    FOREIGN KEY (evenement_id) REFERENCES evenement(id) ON DELETE CASCADE,
+    CONSTRAINT unique_user_event UNIQUE (user_id, evenement_id)
+);
+
+```
+
+---
+
+## ⚙️ Directives de Sécurité & Validation Metier
+
+1. **Authentification & Droits d'Accès :**
+* L'accès aux routes `/admin/*` est strictement réservé au rôle `admin`.
+* L'inscription nécessite un compte étudiant authentifié (`role_user = 'etudiant'`).
+
+
+2. **Garantie d'Unicité de la Réservation :**
+* Une clé unique composée de `(user_id, evenement_id)` empêche la double réservation en base de données.
+* La clé primaire `id_reservation` doit être générée à l'aide d'un algorithme pseudo-aléatoire sécurisé (ex: `UUID` ou format formaté `BDE-2026-XXXXX`).
