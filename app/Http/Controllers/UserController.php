@@ -29,8 +29,6 @@ class UserController extends Controller
 
             ]
         );
-        // dd($r);
-
 
         if (Auth::attempt($r->only('email', 'password', 'role_user'))) {
             $r->session()->regenerate();

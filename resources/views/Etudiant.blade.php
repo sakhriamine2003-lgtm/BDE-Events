@@ -62,12 +62,12 @@
 
             <a href="{{ 'AfficherEvenement' }}"
                 class="flex-1 text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-200">
-                🎉 Voir le dernier Événement
+                Voir le dernier Événement
             </a>
 
-            <a href="{{ 'AfficherReservation' }}"
+            <a href="{{ 'AffTicket' }}"
                 class="flex-1 text-center bg-white hover:bg-slate-50 text-slate-700 font-semibold py-3.5 px-6 rounded-xl border border-slate-200 shadow-sm hover:shadow transition-all duration-200">
-                📅 Voir la Réservation
+                Tiket 🎉
             </a>
 
         </div>
