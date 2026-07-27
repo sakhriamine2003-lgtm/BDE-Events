@@ -7,25 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
- protected $fillable = [
-    'id',
-    'user_id',
-    'evenement_id',
+    protected $fillable = [
+        'id',
+        'user_id',
+        'evenement_id',
 
-];
-protected $primaryKey = 'id_reservation';
+    ];
+    protected $primaryKey = 'id_reservation';
 
 
     /** @use HasFactory<\Database\Factories\ReservationFactory> */
     use HasFactory;
     public function User()
-{
-    return $this->belongsTo(Reservation::class);
-}
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 
 
     public function Evenement()
-{
-    return $this->belongsTo(Evenement::class);
-}
+    {
+        return $this->belongsTo(Evenement::class);
+    }
 }

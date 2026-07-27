@@ -9,21 +9,25 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
     public function up(): void
     {
-        Schema::create('reservations', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->foreignId('evenement_id');
-            $table->foreignId('user_id');
+        Schema::table('reservations', function (Blueprint $table) {
+
         });
     }
+
+
+
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservations');
+        Schema::table('reservations', function (Blueprint $table) {
+            //
+        });
     }
 };

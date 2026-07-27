@@ -11,26 +11,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login' ,[UserController::class , 'AfficherFormulaireLogin']);
+
+Route::get('login', [UserController::class, 'AfficherFormulaireLogin']);
 
 
 Route::post('/login', [UserController::class, 'index'])->name('login.store');
 
 
-// Route::get('/Admin', function () {return view('Admin');});
-// Route::get('/Etudiant', function () {return view('Etudiant');});
+
+Route::get('/CreeEvenement', [EvenementController::class, 'index'])->name('Evenement');
+Route::post('/CreeEvenement', [EvenementController::class, 'create'])->name('createEvenement');
 
 
 
-Route::get('/CreeEvenement' , [EvenementController::class, 'index'])->name('Evenement');
-Route::post('/CreeEvenement' , [EvenementController::class, 'create'])->name('createEvenement');
+Route::get('/AfficherEvenement', [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;
 
 
-
-Route::get('/AfficherEvenement' , [EvenementController::class, 'AfficherEvenement'])->name('AfficherEvenement');;
-
-
-Route::post('/reservation', [ReservationController::class, 'store'])
+Route::post('/reservation', [ReservationController::class, 'ReserverEvent'])
     ->middleware('auth')
     ->name('reserverEvent');
 
@@ -47,3 +44,15 @@ Route::middleware(['auth', 'role_user:Etudiant'])->group(function () {
         return view('Etudiant');
     });
 });
+
+
+
+
+Route::get('/AffTicket', [ReservationController::class, 'AffTicket'])
+    ->middleware('auth')
+    ->name('AffTicket');
+
+
+
+Route::delete('/AfficherEvenement/{id}', [EvenementController::class, 'SupprimerEvent'])
+    ->name('SupprimerEvent');
