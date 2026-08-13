@@ -32,6 +32,8 @@ class EvenementController extends Controller
 
         $evenement = Evenement::create($validated);
 
+
+        
         return response()->json([
             'status'  => 'success',
             'message' => 'Événement créé avec succès',

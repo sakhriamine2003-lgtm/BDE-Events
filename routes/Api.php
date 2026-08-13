@@ -6,7 +6,7 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/AfficherEvenement', [EvenementController::class, 'AfficherEvenement']);
 
-// Route::post('/CreationEvenement', [EvenementController::class, 'CreationEvenement']);
+Route::post('/CreationEvenement', [EvenementController::class, 'CreationEvenement']);
 
 // Route::delete('/SupprimerEvenement/{id}', [EvenementController::class, 'SupprimerEvenement']);
 
