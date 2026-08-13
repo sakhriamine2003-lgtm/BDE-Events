@@ -2,59 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\evenement;
-use App\Http\Requests\StoreevenementRequest;
-use App\Http\Requests\UpdateevenementRequest;
-use App\Policies\EvenementPolicy;
+use App\Models\Evenement;
 use Illuminate\Http\Request;
 
 class EvenementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        return view('CreeEvenement');
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request  $r)
-    {
-        $Evenement = Evenement::create([
-            'title' => $r->title,
-            'heure' => $r->heure,
-            'date' => $r->date,
-            'lieu' => $r->lieu,
-            'prix' => $r->prix,
-            'maxPlaces' => $r->maxPlaces,
-
-
-        ]);
-
-
-        return redirect('/Admin');
-    }
-
-
-
+    // GET /api/evenements
     public function AfficherEvenement()
     {
-        $Evenement = Evenement::get();
-        return view('AfficherEvenement', compact('Evenement'));
+        $evenements = Evenement::all();
+
+        return response()->json([
+            'status' => 'success',
+            'data'   => $evenements
+        ], 200);
     }
 
-
-
-
-    public function SupprimerEvent($id)
+    // POST /api/evenements
+    public function CreationEvenement(Request $request)
     {
-        $evenement = Evenement::findOrFail($id);
+        $validated = $request->validate([
+            'title'     => 'required|string|max:255',
+            'heure'     => 'required',
+            'date'      => 'required|date',
+            'lieu'      => 'required|string',
+            'prix'      => 'required|numeric',
+            'maxPlaces' => 'required|integer',
+        ]);
+
+        $evenement = Evenement::create($validated);
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Événement créé avec succès',
+            'data'    => $evenement
+        ], 201);
+    }
+
+    // DELETE /api/evenements/{id}
+    public function SupprimerEvenement($id)
+    {
+        $evenement = Evenement::find($id);
+
+        if (!$evenement) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Événement introuvable'
+            ], 404);
+        }
+
         $evenement->delete();
 
-        return redirect()->back()->with('success', 'Événement supprimé avec succès.');
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Événement supprimé avec succès'
+        ], 200);
     }
 }

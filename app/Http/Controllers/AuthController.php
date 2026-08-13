@@ -6,7 +6,7 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ReservationController extends Controller
+class AuthController extends Controller
 {
     // POST /api/reservations
     public function store(Request $request)
